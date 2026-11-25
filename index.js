@@ -27,7 +27,7 @@ export async function connectToMongoDB() {
 const connectedClient = await connectToMongoDB();
 const db = connectedClient.db("hireloop-db");
 const usersCollection = db.collection('user');
-
+const jobsCollection = db.collection('jobs');
 
 app.get("/", (req, res) => {
     res.send({ success: true, message: "Hire Loop Server is running..." });
@@ -43,6 +43,21 @@ app.get('/users', async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 })
+
+
+app.post('/jobs', async (req, res) => {
+
+});
+
+
+
+
+
+
+
+
+
+
 
 
 if (process.env.NODE_ENV !== "production") {
