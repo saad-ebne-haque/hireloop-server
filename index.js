@@ -46,7 +46,15 @@ app.get('/users', async (req, res) => {
 
 
 app.post('/jobs', async (req, res) => {
-
+    // console.log(req.body);
+    try {
+        const newJob = req.body;
+        const result = await jobsCollection.insertOne(newJob);
+        res.status(201).json({ success: true, message: 'Job posted successfully', data: result });
+    } catch (error) {
+        console.error('Error posting job:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
 });
 
 
